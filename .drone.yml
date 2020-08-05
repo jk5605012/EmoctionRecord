@@ -5,8 +5,9 @@ name: default
 steps:
 - name: dockerInstall
   image: plugins/docker
-
-- name: test
-  image: plugins/golang:1.14
   commands:
-    - go test ./...
+    - export DOCKERTEST_BIND_LOCALHOST=true
+  settings:
+    repo: gin-test-example
+    tags: latest
+    dry_run: true
