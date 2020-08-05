@@ -30,7 +30,7 @@ func TestAccounts_InsertNewAccount(t *testing.T) {
 			wantErr: false,
 		},
 	}
-	pool, err := dockertest.NewPool("http://localhost:2375")
+	pool, err := dockertest.NewPool("tcp://localhost:2375")
 	if err != nil {
 		log.Fatalf("Could not connect to docker: %s", err)
 	}
