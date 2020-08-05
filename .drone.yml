@@ -13,5 +13,6 @@ steps:
   environment:
     GO111MODULE: "on"
   commands:
-    - go build .
-    - go test -v ./...
+  - systemctl start docker
+  - go build .
+  - go test -v ./...
