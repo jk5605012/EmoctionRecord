@@ -7,5 +7,5 @@ steps:
   image: plugins/docker
   settings:
     repo: hello-world
-      tags: latest
-      dry_run: true
+    tags: latest
+    dry_run: true
