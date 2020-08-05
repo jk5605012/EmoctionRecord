@@ -2,7 +2,6 @@ package routers
 
 import (
 	"gin-test-example/controllers"
-
 	"github.com/gin-gonic/gin"
 )
 
