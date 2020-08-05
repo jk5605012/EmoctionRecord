@@ -4,7 +4,8 @@ name: default
 
 steps:
 - name: dockerInstall
-  image: plugins/docker:latest
-  commands:
-    - docker build
-    - docker run
+  image: plugins/docker
+  settings:
+    repo: hello-world
+      tags: latest
+      dry_run: true
