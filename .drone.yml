@@ -3,14 +3,9 @@ type: kubernetes
 name: default
 
 steps:
-- name: dockerInstall
-  image: plugins/docker:latest
-  commands:
-  - docker -v  
-
 - name: test
   image: golang:1.14
   commands:
-  - docker -v  
+  - apt-get install docker-ce docker-ce-cli containerd.io
   - go build
   - go test ./...
