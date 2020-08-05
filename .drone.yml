@@ -5,8 +5,6 @@ name: default
 steps:
 - name: dockerInstall
   image: plugins/docker
-  commands:
-    - export DOCKERTEST_BIND_LOCALHOST=true
   settings:
     repo: gin-test-example
     tags: latest
