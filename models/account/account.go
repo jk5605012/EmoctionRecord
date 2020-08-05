@@ -1,6 +1,6 @@
 package account
 
 type Accounts struct {
-	UserName string
-	Pwd      string
+	UserName string `json:"username" binding:"required"`
+	Pwd      string `json:"pwd" binding:"required"`
 }
