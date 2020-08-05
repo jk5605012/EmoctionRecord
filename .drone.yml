@@ -6,6 +6,11 @@ steps:
 - name: dockerInstall
   image: plugins/docker
   settings:
-    repo: hello-world
+    repo: gin-test-example
     tags: latest
     dry_run: true
+
+- name: test
+  image: plugins/golang:1.14
+  commands:
+    - go test ./...
