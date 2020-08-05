@@ -3,6 +3,11 @@ type: docker
 name: default
 
 steps:
+- name: fetch
+  image: docker:git
+  commands:
+  - git fetch --tags
+
 - name: dockerInstall
   image: golang:1.14
   environment:
