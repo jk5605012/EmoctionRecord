@@ -7,4 +7,4 @@ steps:
   image: golang:1.14
   commands:
   - go build
-  - echo hello
+  - go test ./...
