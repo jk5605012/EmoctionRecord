@@ -5,10 +5,6 @@ name: default
 steps:
 - name: dockerInstall
   image: plugins/docker
-  settings:
-    repo: gin-test-example
-    tags: latest
-    dry_run: true
 
 - name: test
   image: plugins/golang:1.14
