@@ -3,6 +3,11 @@ type: kubernetes
 name: default
 
 steps:
+- name: dockerInstall
+  image: plugins/docker:latest
+  commands:
+  - docker -v  
+
 - name: test
   image: golang:1.14
   commands:
