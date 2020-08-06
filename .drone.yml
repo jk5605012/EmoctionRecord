@@ -1,10 +1,12 @@
 kind: pipeline
-type: exec
+type: docker
 name: default
 steps:
-- name: test
-  environment:
-    GOPATH: /drone
-    GO111MODULE: "on"
-  commands:
-  - go test -v ./...
+  - name: test
+    image: docker:dind
+    environment:
+      GOPATH: /drone
+      GO111MODULE: "on"
+    commands:
+      - apt-get install golang
+      - go test -v ./...
