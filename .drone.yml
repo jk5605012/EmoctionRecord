@@ -4,6 +4,9 @@ name: default
 steps:
   - name: test
     image: docker:19.03.0-dind
+    volumes:
+    - name: sock
+      path: /var/run/docker.sock
     environment:
       GOPATH: /drone
       GO111MODULE: "on"
