@@ -8,9 +8,14 @@ steps:
   - git fetch --tags
 
 - name: test
-  image: golang:1.13
+  image: golang:1.12
   environment:
     GOPATH: /drone
     GO111MODULE: "on"
   commands:
+  - docker -v
   - make test
+
+services:
+  - name: docker
+    image: docker
