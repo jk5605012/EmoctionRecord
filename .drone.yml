@@ -3,11 +3,10 @@ type: docker
 name: default
 steps:
   - name: test
-    image: docker:dind
+    image: docker:19.03.0-dind
     environment:
       GOPATH: /drone
       GO111MODULE: "on"
     commands:
-      - docker-machine start dev
       - apk update && apk add go
       - go test -v ./...
