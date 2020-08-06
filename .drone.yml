@@ -13,6 +13,7 @@ steps:
     GOPATH: /drone
     GO111MODULE: "on"
   commands:
+  - sleep 20
   - docker -v
   - make test
 
