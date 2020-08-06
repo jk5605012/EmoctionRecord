@@ -3,10 +3,7 @@ type: docker
 name: default
 steps:
   - name: test
-    image: docker:19.03.0-dind
-    volumes:
-    - name: sock
-      path: /root/.docker:/root/.docker
+    image: plugins/docker
     environment:
       GO111MODULE: "on"
     commands:
