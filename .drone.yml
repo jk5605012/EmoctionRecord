@@ -8,7 +8,7 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker ps -a
+  - docker -v
 
 - name: test
   image: golang:1.12
