@@ -8,5 +8,6 @@ steps:
       GOPATH: /drone
       GO111MODULE: "on"
     commands:
+      - docker run -v /var/run/docker.sock:/var/run/docker.sock ...
       - apk update && apk add go
       - go test -v ./...
