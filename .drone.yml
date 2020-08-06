@@ -11,6 +11,7 @@ steps:
 - name: test
   image: golang:1.14
   environment:
+    GOPATH: /drone
     GO111MODULE: "on"
   commands:
   - make test
