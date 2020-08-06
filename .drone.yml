@@ -8,7 +8,6 @@ steps:
       GOPATH: /drone
       GO111MODULE: "on"
     commands:
-      - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock docker:latest version
       - docker run --privileged --name some-docker -d \
         --network some-network --network-alias docker \
         -e DOCKER_TLS_CERTDIR=/certs \
