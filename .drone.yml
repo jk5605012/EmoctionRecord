@@ -1,20 +1,10 @@
 kind: pipeline
+type: exec
 name: default
-
 steps:
-- name: docker
-  image: plugins/docker
-  volumes:
-  - name: dockersock
-    path: /var/run/docker.sock
-  commands:
-  - docker -v
-
 - name: test
-  image: golang:1.12
   environment:
     GOPATH: /drone
     GO111MODULE: "on"
   commands:
-  - docker -v
-  - make test
+  - go test -v ./...
