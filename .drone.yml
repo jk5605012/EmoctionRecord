@@ -2,10 +2,13 @@ kind: pipeline
 name: default
 
 steps:
-- name: fetch
-  image: docker:git
+- name: docker
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
   commands:
-  - git fetch --tags
+  - docker ps -a
 
 - name: test
   image: golang:1.12
@@ -16,7 +19,3 @@ steps:
   - sleep 20
   - docker -v
   - make test
-
-services:
-  - name: docker
-    image: docker
