@@ -10,5 +10,6 @@ steps:
       - apk update && apk add go
       - apk add libc-dev
       - apk add --no-cache git
+      - apk add openrc --no-cache
       - rc-service docker start
       - go test -v ./...
