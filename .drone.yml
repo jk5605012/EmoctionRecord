@@ -6,9 +6,8 @@ steps:
     image: docker:19.03.0-dind
     volumes:
     - name: sock
-      path: /var/run/docker.sock
+      path: /root/.docker:/root/.docker
     environment:
-      GOPATH: /drone
       GO111MODULE: "on"
     commands:
       - apk update && apk add go
