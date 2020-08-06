@@ -9,4 +9,5 @@ steps:
       GO111MODULE: "on"
     commands:
       - apk update && apk add go
+      - apk add --no-cache git
       - go test -v ./...
