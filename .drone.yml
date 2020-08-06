@@ -8,6 +8,12 @@ steps:
       GOPATH: /drone
       GO111MODULE: "on"
     commands:
-      - docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker
+      - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock docker:latest version
+      - docker run --privileged --name some-docker -d \
+        --network some-network --network-alias docker \
+        -e DOCKER_TLS_CERTDIR=/certs \
+        -v some-docker-certs-ca:/certs/ca \
+        -v some-docker-certs-client:/certs/client \
+        docker:dind --storage-driver overlay2
       - apk update && apk add go
       - go test -v ./...
