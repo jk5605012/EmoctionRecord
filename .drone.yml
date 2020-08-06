@@ -10,4 +10,6 @@ steps:
       - apk update && apk add go
       - apk add libc-dev
       - apk add --no-cache git
+      - apk --no-cache add curl
+      - curl --unix-socket /var/run/docker.sock http://docker/containers/json
       - go test -v ./...
