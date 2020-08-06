@@ -1,5 +1,4 @@
 kind: pipeline
-type: docker
 name: default
 
 steps:
@@ -9,7 +8,7 @@ steps:
   - git fetch --tags
 
 - name: test
-  image: golang:1.14
+  image: golang:1.13
   environment:
     GOPATH: /drone
     GO111MODULE: "on"
