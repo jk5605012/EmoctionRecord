@@ -8,5 +8,5 @@ steps:
       GOPATH: /drone
       GO111MODULE: "on"
     commands:
-      - apt-get install golang
+      - apk update && apk add go
       - go test -v ./...
