@@ -11,5 +11,5 @@ steps:
       - apk add libc-dev
       - apk add --no-cache git
       - apk add openrc --no-cache
-      - rc-service docker start
+      - docker run hello-world
       - go test -v ./...
