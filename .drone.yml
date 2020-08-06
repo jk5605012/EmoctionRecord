@@ -8,6 +8,6 @@ steps:
       GOPATH: /drone
       GO111MODULE: "on"
     commands:
-      - service docker start
+      - docker-machine start dev
       - apk update && apk add go
       - go test -v ./...
