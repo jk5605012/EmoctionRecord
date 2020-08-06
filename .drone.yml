@@ -3,7 +3,7 @@ type: docker
 name: default
 steps:
   - name: test
-    image: docker:19.03.0-dind
+    image: docker
     environment:
       GO111MODULE: "on"
     commands:
