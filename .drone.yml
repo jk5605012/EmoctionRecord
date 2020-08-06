@@ -3,7 +3,7 @@ type: docker
 name: default
 steps:
   - name: test
-    image: docker
+    image: docker:19.03.0-dind
     environment:
       GO111MODULE: "on"
     commands:
@@ -11,5 +11,6 @@ steps:
       - apk add libc-dev
       - apk add --no-cache git
       - apk add openrc --no-cache
+      - docker network create dind
       - docker run hello-world
       - go test -v ./...
