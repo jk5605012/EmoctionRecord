@@ -8,12 +8,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Register(c *gin.Context) int {
+func Register(c *gin.Context) (int, interface{}) {
 	acc := account.Accounts{}
 	err := c.Bind(&acc)
 	if err != nil {
-		return e.PARAMETER_ERROR
+		return e.PARAMETER_ERROR, nil
 	}
 	c.JSON(http.StatusOK, gin.H{"ok": true})
-	return e.SUCCESS
+	return e.SUCCESS, nil
 }
