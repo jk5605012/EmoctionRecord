@@ -3,14 +3,8 @@ type: docker
 name: default
 steps:
   - name: test
-    image: docker:19.03.0-dind
+    image: golang:1.14
     environment:
       GO111MODULE: "on"
     commands:
-      - apk update && apk add go
-      - apk add libc-dev
-      - apk add --no-cache git
-      - apk add openrc --no-cache
-      - docker network create dind
-      - docker run hello-world
       - go test -v ./...
