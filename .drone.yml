@@ -11,7 +11,7 @@ steps:
       - go test -v ./...
 
 services:
-- name: database
+- name: localhost
   image: postgres:9-alpine
   environment:
     POSTGRES_USER: postgres

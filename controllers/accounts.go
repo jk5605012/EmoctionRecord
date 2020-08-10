@@ -17,3 +17,7 @@ func Register(c *gin.Context) (int, interface{}) {
 	c.JSON(http.StatusOK, gin.H{"ok": true})
 	return e.SUCCESS, nil
 }
+
+// func AccountsList(c *gin.Context)  {
+	
+// }
