@@ -17,5 +17,3 @@ services:
     POSTGRES_USER: postgres
     POSTGRES_DB: test
     POSTGRES_PASSWORD: mysecretpassword
-  command:
-    - psql -U postgres -d test -h database
