@@ -7,16 +7,15 @@ steps:
     environment:
       GO111MODULE: "on"
     commands:
+      - sleep 20
       - go test -v ./...
 
-# services:
-# - name: database
-#   image: postgres:9-alpine
-#   environment:
-#     POSTGRES_USER: postgres
-#     POSTGRES_DB: test
-volumes:
-  - name: v
-    host:
-        name: a
-        path: /var/run/docker.sock:/var/run/docker.sock
+services:
+- name: database
+  image: postgres:9-alpine
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_DB: test
+    POSTGRES_PASSWORD: mysecretpassword
+  command:
+    - psql -U postgres -d test -h database

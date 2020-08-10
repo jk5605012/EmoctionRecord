@@ -1,13 +1,10 @@
 package account
 
 import (
-	"fmt"
 	"gin-test-example/db"
-	"log"
 	"testing"
 
 	"github.com/jinzhu/gorm"
-	"github.com/ory/dockertest"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	// _ "github.com/jinzhu/gorm/dialects/mysql"
@@ -40,28 +37,34 @@ func TestAccounts_InsertNewAccount(t *testing.T) {
 			wantErr: true,
 		},
 	}
-	pool, err := dockertest.NewPool("")
+	var err error
+	db.DB, err = gorm.Open("postgres", "postgres://postgres:mysecretpassword@database:5432/test?sslmode=disable")
 	if err != nil {
-		log.Fatalf("Could not connect to docker: %s", err)
+		t.Error(err)
+		return
 	}
-	resource, err := pool.Run("postgres", "9.6", []string{"POSTGRES_PASSWORD=secret", "POSTGRES_DB=test"})
-	if err != nil {
-		log.Fatalf("Could not start resource: %s", err)
-	}
-	if err = resource.Expire(60); err != nil {
-		log.Fatal(err)
-	}
-	err = pool.Retry(func() error {
-		var err error
-		db.DB, err = gorm.Open("postgres", fmt.Sprintf("postgres://postgres:secret@localhost:%s/%s?sslmode=disable", resource.GetPort("5432/tcp"), "test"))
-		if err != nil {
-			return err
-		}
-		return db.DB.DB().Ping()
-	})
-	if err != nil {
-		log.Fatalf("Could not connect to docker: %s", err)
-	}
+	// pool, err := dockertest.NewPool("")
+	// if err != nil {
+	// 	log.Fatalf("Could not connect to docker: %s", err)
+	// }
+	// resource, err := pool.Run("postgres", "9.6", []string{"POSTGRES_PASSWORD=secret", "POSTGRES_DB=test"})
+	// if err != nil {
+	// 	log.Fatalf("Could not start resource: %s", err)
+	// }
+	// if err = resource.Expire(60); err != nil {
+	// 	log.Fatal(err)
+	// }
+	// err = pool.Retry(func() error {
+	// 	var err error
+	// 	db.DB, err = gorm.Open("postgres", fmt.Sprintf("postgres://postgres:secret@localhost:%s/%s?sslmode=disable", resource.GetPort("5432/tcp"), "test"))
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// 	return db.DB.DB().Ping()
+	// })
+	// if err != nil {
+	// 	log.Fatalf("Could not connect to docker: %s", err)
+	// }
 	db.DB.CreateTable(&Accounts{})
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -74,9 +77,9 @@ func TestAccounts_InsertNewAccount(t *testing.T) {
 			}
 		})
 	}
-	if err = pool.Purge(resource); err != nil {
-		log.Fatal(err)
-	}
+	// if err = pool.Purge(resource); err != nil {
+	// 	log.Fatal(err)
+	// }
 }
 
 // func TestInsert(t *testing.T) {
