@@ -16,6 +16,8 @@ func wrapper(handler HandlerFunc) func(c *gin.Context) {
 		switch errcode {
 		case e.PARAMETER_ERROR:
 			controllers.Response(c, http.StatusBadRequest, e.PARAMETER_ERROR, data)
+		case e.SERVER_ERROR:
+			controllers.Response(c, http.StatusInternalServerError, e.SERVER_ERROR, data)
 		default:
 			controllers.Response(c, http.StatusOK, e.SUCCESS, data)
 		}

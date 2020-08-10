@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gin-test-example/db"
 	"gin-test-example/routers"
 	"log"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 
 func main() {
 	r := routers.Init()
+	db.Init()
 	s := &http.Server{
 		Addr:           ":8080",
 		Handler:        r,

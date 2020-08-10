@@ -3,7 +3,6 @@ package controllers
 import (
 	"gin-test-example/models/account"
 	"gin-test-example/pkg/e"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,10 +13,13 @@ func Register(c *gin.Context) (int, interface{}) {
 	if err != nil {
 		return e.PARAMETER_ERROR, nil
 	}
-	c.JSON(http.StatusOK, gin.H{"ok": true})
+	err = acc.InsertNewAccount()
+	if err != nil {
+		return e.SERVER_ERROR, err
+	}
 	return e.SUCCESS, nil
 }
 
 // func AccountsList(c *gin.Context)  {
-	
+
 // }
