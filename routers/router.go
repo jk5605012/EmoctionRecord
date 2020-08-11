@@ -27,7 +27,7 @@ func wrapper(handler HandlerFunc) func(c *gin.Context) {
 func Init() *gin.Engine {
 	r := gin.Default()
 	r.POST("/register", wrapper(controllers.Register))
-	// r.GET("/accounts", )
+	r.GET("/accounts", wrapper(controllers.AccountsList))
 
 	return r
 }

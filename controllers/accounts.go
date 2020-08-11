@@ -20,6 +20,11 @@ func Register(c *gin.Context) (int, interface{}) {
 	return e.SUCCESS, nil
 }
 
-// func AccountsList(c *gin.Context)  {
-
-// }
+func AccountsList(c *gin.Context) (int, interface{})  {
+	acc := account.Accounts{}
+	accs, err := acc.ListAccounts()
+	if err != nil {
+		return e.SERVER_ERROR, err
+	}
+	return e.SUCCESS, accs
+}

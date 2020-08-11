@@ -2,6 +2,7 @@ package main
 
 import (
 	"gin-test-example/db"
+	"gin-test-example/models/account"
 	"gin-test-example/routers"
 	"log"
 	"net/http"
@@ -10,6 +11,7 @@ import (
 func main() {
 	r := routers.Init()
 	db.Init()
+	db.DB.AutoMigrate(&account.Accounts{})
 	s := &http.Server{
 		Addr:           ":8080",
 		Handler:        r,
